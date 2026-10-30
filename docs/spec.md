@@ -34,11 +34,12 @@
 ```
 
 - All top-level fields are optional.
-- Dependencies aren't required to have a `pkg.json` file.
+- Dependencies aren't required to have a `pkg.json` file. Only required for the "leaf nodes".
+    - `pkg.json` can declare a dependency on any random artifact fetchable by URL. The upstream dependency doesn't need a `pkg.json`.
 - Packages distributed as Git repositories SHOULD have a git _tag_ matching its version. Packages SHOULD obey semantic versioning conventions. For all version identifiers, implementation should check for a version prefixed with `v` in the git repository, as this is a common convention.
 - Out of scope:
-    - "pack" (creating a plugin), see [`vim.pack`](https://neovim.io/doc/user/helptag.html?tag=vim.pack)
-    - "publish" is out of scope, because `pkg.json` is decentralized. Publishing a plugin means pushing it to a git repo with a top-level `pkg.json`.
+    - "pack" (creating a package), see [`vim.pack`](https://neovim.io/doc/user/helptag.html?tag=vim.pack)
+    - "publish" is out of scope, because `pkg.json` is decentralized. Publishing a package means pushing it to a git repo with a top-level `pkg.json`.
 
 ## Semantic versioning
 
@@ -68,8 +69,8 @@ This may be relaxed in the future.
     - `preuninstall` (`string`) Pre delete script.
     - `preupdate` (`string`) Pre update script.
     - `update` (`string`) Post update script.
-* metadata: `pkg.json` allows arbitrary user-defined fields at any nesting level, as long as they don't conflict with specification-owned fields.
-    * Like NPM's `package.json`, this makes the format easy to extend. But application fields should be chosen to avoid potential conflict with fields added to future versions of the spec. For example, `devDependencies` may be added to the spec so applications SHOULD NOT extend the format with that field.
+- metadata: `pkg.json` allows arbitrary user-defined fields at any nesting level, as long as they don't conflict with specification-owned fields.
+    - Like NPM's `package.json`, this makes the format easy to extend. But application fields should be chosen to avoid potential conflict with fields added to future versions of the spec. For example, `devDependencies` may be added to the spec so applications SHOULD NOT extend the format with that field.
 
 ## Changes
 
